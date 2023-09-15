@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mouse Move Event</title>
+    <style>
+      body {
+        background-color: rgb(181, 96, 96);
+        overflow: hidden;
+      }
+      .gateBox {
+        position: absolute;
+        width: 400px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+        color: #fff;
+      }
+      .top {
+        padding: 10px 30px;
+        border: 2px solid #fff;
+        text-align: center;
+      }
+      .bottom {
+        display: flex;
+        justify-content: space-evenly;
+        border: 2px solid #fff;
+        border-top: none;
+      }
+      .bottom a {
+        color: #fff;
+        padding: 15px 0;
+        width: 50%;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: #fff;
+          color: rgb(181, 96, 96);
+        }
+      }
+      .line {
+        border: 1px solid #fff;
+      }
+      .cursorItem {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        pointer-events: none;
+      }
+      .circle {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        background: rgb(67, 40, 126);
+        border-radius: 50%;
+        margin: -30px -30px;
+        opacity: 0.8;
+        transition: all 0.3s ease-in-out;
+      }
+    </style>
+    <script>
+      window.onload = () => {
+        let x = 0;
+        let y = 0;
+        let targetX = 0;
+        let targetY = 0;
+        const speed = 0.08;
+        const cursorItem = document.querySelector(".cursorItem");
+        const circle = cursorItem.querySelector(".circle");
+        const buttonAll = document.querySelectorAll("a");
+
+        buttonAll.forEach((item, index) => {
+          item.addEventListener("mouseenter", () => {
+            circle.style.transform = "scale(.4)";
+          });
+
+          item.addEventListener("mouseleave", () => {
+            circle.style.transform = "scale(1)";
+          })
+        });
+
+        window.addEventListener("mousemove", (e) => {
+          x = e.pageX;
+          y = e.pageY;
+        });
+
+        // Yes, No 버튼 롤 오버하면 배경이 화이트가 되고 텍스트가 배경색상으로 바뀐다.
+        // 써클이 작아진다.
+        // 롤 아웃되면 다시 커진다.
+
+
+        const loop = () => {
+          targetX += (x - targetX) * speed;
+          targetY += (y - targetY) * speed;
+
+          // cursorItem.style.left = targetX + "px";
+          // cursorItem.style.top = targetY + "px";
+          cursorItem.style.transform = `translate(${targetX}px, ${targetY}px)`;
+          // cursorItem.style.transform = `translate3d(${targetX}px, ${targetY}px, 0)`;
+
+          window.requestAnimationFrame(loop);
+        };
+
+        loop();
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="cursorItem">
+      <span class="circle"></span>
+    </div>
+    <div class="gateBox">
+      <div class="top">
+        <p>Are you 21 or older?</p>
+      </div>
+      <div class="bottom">
+        <a href="#yes">Yes</a>
+        <span class="line"></span>
+        <a href="#no">No</a>
+      </div>
+    </div>
+  </body>
+</html>

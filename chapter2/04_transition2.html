@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mouse Move Event</title>
+    <style>
+      body {
+        background-color: #13adcc;
+      }
+      h1 {
+        font-size: 30px;
+        padding: 20px;
+      }
+      .box {
+        width: 60px;
+        height: 60px;
+        /* background-color: black; */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* transition: all 0.8s ease-in-out; */
+        transition: all 0.8s cubic-bezier(1.000, -0.285, 0.045, 1.210);
+      }
+      .box img {
+        width: 160px;
+      }
+      button {
+        padding: 40px 100px;
+        background-color: black;
+        color: #fff;
+        font-size: 30px;
+        transition: all 0.5s ease-in-out;
+        &:hover {
+          padding: 45px 120px;
+          background-color: #39023f;
+        }
+      }
+    </style>
+    <script>
+      window.onload = () => {
+        const h1 = document.querySelector("h1");
+        const box = document.querySelector(".box");
+        const button = document.querySelector("button");
+
+        button.addEventListener("mouseenter", (e) => {
+          box.style.top = `${e.pageY}px`;
+          box.style.left = `${e.pageX}px`;
+        });
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1></h1>
+    <div class="box">
+      <img src="./assets/images/butterfly.gif" alt="나비" />
+    </div>
+    <button>
+      버튼
+    </button>
+  </body>
+</html>

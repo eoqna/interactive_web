@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Vanilla JS</title>
+    <style>
+      body {
+        background-color: rgba(43, 49, 223, 0.8);
+      }
+      h1 {
+        font-size: 50px;
+        color: #7ae58a;
+        padding: 40px;
+      }
+      button {
+        background-color: black;
+        color: #fff;
+        padding: 20px 70px;
+        font-size: 24px;
+        border-radius: 50px;
+        &:hover {
+          background-color: #fff;
+          color: black;
+          font-size: 38px;
+          padding: 30px 80px;
+          transition: all .3s ease-out;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">테스트1</h1>
+    <h1 class="title">테스트2</h1>
+    <h1 class="title">테스트3</h1>
+
+    <button>버튼</button>
+  </body>
+  <script>
+    const h1 = document.querySelectorAll(".title");
+    console.log(h1);
+
+    // h1[0].innerHTML = "11111";
+    // h1[0].style.color = "yellow";
+    // h1[0].style.fontSize = "60px";
+    // h1[0].style.paddingLeft = "160px";
+    // h1[0].style.display = "block";
+
+    const button = document.querySelector("button");
+
+    // button.addEventListener("click", () => {
+    //   if(h1[0].style.display === "block") {
+    //     h1[0].style.display = "none";
+    //   } else {
+    //     h1[0].style.display = "block";
+    //   }
+    // });
+
+    // button.addEventListener("click", () => {
+    //   if(h1[0].style.color === "yellow") {
+    //     h1[0].style.color = "red";
+    //   } else {
+    //     h1[0].style.color = "yellow";
+    //   }
+    // });
+
+    button.addEventListener("click", () => {
+      h1.forEach((item, index) => {
+      item.innerText = "aaaa " + index;
+    })
+    });
+  </script>
+</html>

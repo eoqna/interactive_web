@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Vanilla JS</title>
+    <style>
+      body {
+        background-color: #27b378;
+        padding: 30px;
+      }
+      input {
+        padding: 20px;
+        font-size: 20px;
+      }
+      .value {
+        font-size: 80px;
+        color: #e6f168;
+        padding: 10px;
+      }
+      button {
+        background-color: black;
+        color: #fff;
+        padding: 10px 40px;
+        font-size: 28px;
+        border-radius: 50px;
+        &:hover {
+          background-color: #fff;
+          color: black;
+          transition: all .3s ease-out;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <input type="number" value="1" />
+    +
+    <input type="number" value="2" />
+    <h1 class="value">0</h1>
+
+    <button>정답</button>
+  </body>
+  <script>
+    const input = document.getElementsByTagName("input");
+    const value = document.querySelector(".value");
+    const button = document.querySelector("button");
+
+    button.addEventListener("click", () => {
+      value.innerText = `정답은 ${Number(input[0].value) + Number(input[1].value)} 입니다.`;
+    });
+  </script>
+</html>
